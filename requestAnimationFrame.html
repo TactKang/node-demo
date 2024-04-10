@@ -1,0 +1,52 @@
+<!--
+ * @Author: lwk
+ * @Date: 2024-03-18 21:29:20
+ * @LastEditors: lwk
+ * @LastEditTime: 2024-03-18 21:29:29
+ * @Description: 请填写简介
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #box {
+      width: 0px;
+      height: 50px;
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <h1>requestAnimationFrame API</h1>
+    <button id='begin' class="begin">开始</button>
+    <button id='end' class="end">停止</button>
+    <div id='box'></div>
+  </body>
+  <script>
+
+(() => {
+  const beginBtn = document.querySelector("#begin")
+  const endBtn = document.querySelector("#end")
+  const box = document.querySelector("#box")
+  let myRef;
+
+  beginBtn.addEventListener("click", () => {
+    myRef = requestAnimationFrame(test)
+  })
+
+  endBtn.addEventListener("click", () => {
+    cancelAnimationFrame(myRef)
+  })
+
+  function test() {
+    box.style.width = `${myRef}%`
+    myRef = requestAnimationFrame(test)
+  }
+})()
+
+
+  </script>
+</html>
